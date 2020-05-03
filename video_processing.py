@@ -118,6 +118,11 @@ def show(frame, fps):
         num += 1
 
 
+def show_violations():
+    for video_list in videos:
+        print(video_list)
+
+
 def main(video_path):
     print("[INFO] in main with " + video_path)
     video = cv2.VideoCapture(video_path)
@@ -126,6 +131,7 @@ def main(video_path):
         ret, image = video.read()
         if not ret:
             print("[INFO] Done detecting.")
+            show_violations()
             break
         show(image, FPS)
     video.release()
@@ -133,11 +139,11 @@ def main(video_path):
 
 
 preprocess()
-main("processed_video\\test1.mp4")
+main("processed_video\\test1.mp4")    # TODO: Remove this line in production
 
-print("[INFO] Printing Vidoes List")
-for i in videos:
-    print(i)
-    with open("videos_list.csv", "w+") as file:
-        writer = csv.writer(file)
-        writer.writerow([i])
+# print("[INFO] Printing Vidoes List")
+# for i in videos:
+#     print(i)
+#     with open("videos_list.csv", "w+") as file:
+#         writer = csv.writer(file)
+#         writer.writerow([i])
